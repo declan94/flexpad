@@ -3,21 +3,32 @@
  */
 var ep = require('etherpad-lite-client');
 var async = require('async');
+var settings = require('./settings');
+var path = require('path');
+var fs = require('fs');
+var process = require('process');
 var debug = require('debug')('flexpad:etherpad');
 
+try {
+    var apiKeyFile = path.resolve(path.join(settings.epHome, "APIKEY.txt"));
+    var apiKey = fs.readFileSync(apiKeyFile).toString();
+} catch (e) {
+    console.error('Read etherpad apikey failed: ' + JSON.stringify(e));
+    process.exit()
+}
 
 var api = ep.connect({
-    apikey: 'c93eb32f4c3ae920ae55dbdaac01e910e278de31f06340ba3c4bc8f78f79dd0b',
-    host: 'localhost',
-    port: 9001
+    apikey: apiKey,
+    host: settings.epHost,
+    port: settings.epPort
 });
 var groupMapper = "flexpad-group";
 var myGroupID = "";
 
 exports.api = api;
 
-exports.init = function (callback) {
-    api.createGroupIfNotExistsFor({groupMapper: groupMapper}, function(err, data) {
+exports.init = function(callback) {
+    api.createGroupIfNotExistsFor({ groupMapper: groupMapper }, function(err, data) {
         if (err) {
             callback("create etherpad group failed: " + JSON.stringify(err));
         } else {
@@ -28,8 +39,8 @@ exports.init = function (callback) {
     });
 };
 
-exports.createPad = function (callback) {
-    api.createGroupPad({groupID: myGroupID, padName: randomPadName()}, function(err, data) {
+exports.createPad = function(callback) {
+    api.createGroupPad({ groupID: myGroupID, padName: randomPadName() }, function(err, data) {
         if (err) {
             if (err.message == "pad does already exist") {
                 exports.createPad(callback);
@@ -44,7 +55,7 @@ exports.createPad = function (callback) {
 };
 
 // fill pad.rdID
-exports.fillPadReadonlyID = function (pad, callback) {
+exports.fillPadReadonlyID = function(pad, callback) {
     api.getReadOnlyID(pad, function(err, data) {
         if (err) {
             debug("get pad readonlyID failed: " + JSON.stringify(err));
@@ -56,17 +67,18 @@ exports.fillPadReadonlyID = function (pad, callback) {
     });
 };
 
-exports.createSession = function (user, expireSec, callback) {
+exports.createSession = function(user, expireSec, callback) {
     if (expireSec < 600) {
         expireSec = 600;
     }
-    var createAuthor = function (callback) {
-        api.createAuthorIfNotExistsFor({authorMapper: user.username, name: user.name}, callback);
+    var createAuthor = function(callback) {
+        api.createAuthorIfNotExistsFor({ authorMapper: user.username, name: user.name }, callback);
     };
-    var createSession = function (author, callback) {
-        api.createSession({groupID: myGroupID,
+    var createSession = function(author, callback) {
+        api.createSession({
+            groupID: myGroupID,
             authorID: author.authorID,
-            validUntil: Date.now()/1000+expireSec
+            validUntil: Date.now() / 1000 + expireSec
         }, callback);
     };
     async.waterfall([createAuthor, createSession], callback);
@@ -76,8 +88,7 @@ function randomPadName() {
     var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     var string_length = 16;
     var randomstring = '';
-    for (var i = 0; i < string_length; i++)
-    {
+    for (var i = 0; i < string_length; i++) {
         var rnum = Math.floor(Math.random() * chars.length);
         randomstring += chars.substring(rnum, rnum + 1);
     }

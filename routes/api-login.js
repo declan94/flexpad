@@ -5,17 +5,15 @@ var express = require('express');
 var auth = require('../models/auth');
 var router = express.Router();
 
-
-
 router.post('/login', function(req, res, next) {
     //Test code
     var data = req.body;
-    auth.login(data.username, data.password, req, res, function (err, user) {
-       if (err) {
-           res.status(403).send(err);
-       } else {
-           res.json(user);
-       }
+    auth.login(data.username, data.password, req, res, function(err, user) {
+        if (err) {
+            res.status(403).json({ msg: err });
+        } else {
+            res.json(user);
+        }
     });
 });
 

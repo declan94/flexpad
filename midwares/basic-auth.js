@@ -7,12 +7,12 @@ var debug = require('debug')('flexpad:auth');
 
 
 //checks for basic http auth
-module.exports = function (req, res, next) {
+module.exports = function(req, res, next) {
 
-    var authorize = function (cb) {
+    var authorize = function(cb) {
         // Skip special urls
         debug("auth: " + req.path);
-        if (!req.path.match(/^\/api/) || req.path.match(/^\/api\/login$/))  {
+        if (!req.path.match(/^\/api/) || req.path.match(/^\/api\/login$/)) {
             return cb(true);
         }
         var sess = req.session;
@@ -24,17 +24,17 @@ module.exports = function (req, res, next) {
             var userpass = new Buffer(req.headers.authorization.split(' ')[1], 'base64').toString().split(":")
             var username = userpass.shift();
             var password = userpass.join(':');
-            auth.login(username, password, req, res, function (err) {
+            auth.login(username, password, req, res, function(err) {
                 cb(err == null);
             });
         }
     };
 
     /* Authentication OR authorization failed. */
-    var failure = function () {
-        res.header('WWW-Authenticate', 'Basic realm="Protected Area"');
+    var failure = function() {
+        // res.header('WWW-Authenticate', 'Basic realm="Protected Area"');
         if (req.headers.authorization) {
-            setTimeout(function () {
+            setTimeout(function() {
                 res.status(401).send('Authentication required');
             }, 1000);
         } else {
@@ -42,7 +42,7 @@ module.exports = function (req, res, next) {
         }
     };
 
-    authorize(function (ok) {
+    authorize(function(ok) {
         if (ok) return next();
         else failure()
     });

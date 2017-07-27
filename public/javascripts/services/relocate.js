@@ -1,8 +1,7 @@
-
 angular.module('flexpad')
-    .factory('Relocate', function ($location) {
+    .factory('Relocate', function($location) {
 
-        var service = {last: false};
+        var service = { last: false };
 
         var toLocation = function(loc) {
             var path = $location.path();
@@ -17,11 +16,11 @@ angular.module('flexpad')
 
         service.toLocation = toLocation;
 
-        service.toLogin = function () {
+        service.toLogin = function() {
             toLocation("/login");
         };
 
-        service.toHome = function () {
+        service.toHome = function() {
             toLocation("/home");
         };
 
@@ -29,9 +28,9 @@ angular.module('flexpad')
             toLocation("/pad/" + pad.id);
         };
 
-        service.toBack = function (defaultPath) {
+        service.toBack = function(defaultPath) {
             console.log(service.last);
-            $location.path(service.last || defaultPath);
+            $location.path(service.last || defaultPath || "/home");
         };
 
         return service;

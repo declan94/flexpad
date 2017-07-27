@@ -1,0 +1,34 @@
+{
+    // etherpad host
+    "epHost": "localhost",
+    // etherpad port
+    "epPort": 9001,
+    // etherpad home directory
+    "epHome": "/Users/declan/cloudafort/etherpad-lite-1.6.1",
+
+    // use http api for authentication
+    // "authType": "api",
+    // "apiPath": "localhost:8080/api/v1/login",
+
+    // use users in this file for authentication
+    "authType": "settings",
+    // users {username => data}
+    "users": {
+        "chenye": {
+            "password": "laowang123",
+            "name": "Ye Chen"
+        },
+        "yijie": {
+            "password": "laowang123",
+            "name": "Yijie Wang"
+        },
+        "qianjiang": {
+            "password": "laowang123",
+            "name": "Qianjiang Huai"
+        },
+        "shanyu": {
+            "password": "laowang123",
+            "name": "Yu Shan"
+        }
+    }
+}
