@@ -1,17 +1,17 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+var express = require('express');
+var mongoose = require('mongoose');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-const etherpad = require('./utils/etherpad');
-const basicAuth = require('./midwares/basic-auth');
-const apiLogin = require('./routes/api-login');
-const apiPads = require('./routes/api-pads');
+var etherpad = require('./models/etherpad');
+var basicAuth = require('./midwares/basic-auth');
+var apiLogin = require('./routes/api-login');
+var apiPads = require('./routes/api-pads');
 
 
 var mongooseConnect = function(callback) {

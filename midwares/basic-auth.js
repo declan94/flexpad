@@ -2,7 +2,9 @@
  * Created by declan on 17/7/26.
  */
 
+var auth = require('../models/auth');
 var debug = require('debug')('flexpad:auth');
+
 
 //checks for basic http auth
 module.exports = function (req, res, next) {
@@ -22,12 +24,9 @@ module.exports = function (req, res, next) {
             var userpass = new Buffer(req.headers.authorization.split(' ')[1], 'base64').toString().split(":")
             var username = userpass.shift();
             var password = userpass.join(':');
-            //test code
-            if (username.length > 0) {
-                req.session.user = {username: username, name: username};
-                return cb(true);
-            }
-            return cb(false);
+            auth.login(username, password, req, res, function (err) {
+                cb(err == null);
+            });
         }
     };
 

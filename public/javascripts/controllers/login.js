@@ -9,7 +9,7 @@ angular.module('flexpad')
           Load.loaded("login");
           if (result) {
             Auth.storeToCookie();
-            Relocate.toHome();
+            Relocate.toBack();
           } else {
             console.debug(response);
             if (response.status === -1) {

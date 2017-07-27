@@ -14,7 +14,7 @@ angular.module('flexpad')
 
         $scope.createPad = function(title) {
             if (title.match(/^\s*$/)) {
-                Alert.error("请输入标题!");
+                Alert.error("Input the title!");
                 return;
             }
             Load.loading("createPad");
@@ -22,7 +22,8 @@ angular.module('flexpad')
                 Load.loaded("createPad");
                 Relocate.toPad(ret.item);
             }, function (err) {
-                Alert.error(err);
+                console.debug(err);
+                Alert.error("Create Failed!");
                 Load.loaded("createPad");
             });
         };

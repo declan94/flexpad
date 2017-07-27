@@ -1,0 +1,23 @@
+<div class="modal-content" align="center">
+    <div class="modal-header">
+        <h4>Share: {{pad.title}}</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="telForm" style="padding: 0 10px 0 0;">
+
+            <div class="form-group">
+                <label class="control-label">
+                    Readonly &nbsp;<input name="readonly" type="checkbox" ng-model="readonly" ng-click="updateLink()"/>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 col-sm-4 col-xs-4 control-label">Link</label>
+                <div class="col-md-10 col-sm-8 col-xs-8">
+                    <input placeholder="" name="shareLink" class="form-control" ng-model="shareLink" readonly/>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

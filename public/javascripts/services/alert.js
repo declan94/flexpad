@@ -8,7 +8,7 @@ angular.module('flexpad')
         var _alert = function(info, type, autoDismiss) {
             var modalInstance = $uibModal.open({
                 animation: true,
-                windowTemplateUrl: 'views/alertwindow.html',
+                windowTemplateUrl: 'views/modalwindow.html',
                 templateUrl: 'views/alertmodal.html',
                 controller: function($scope) {
                     $scope.alertType = type;

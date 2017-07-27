@@ -4,7 +4,7 @@
 
 angular.module('flexpad')
     .factory('Pads', function ($resource) {
-        var path = "/api/pads/:padId";
+        var path = "/api/pads/:padID";
         return $resource(path, {},
             {
                 get: {method: 'GET', cache: false},
