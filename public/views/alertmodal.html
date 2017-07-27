@@ -1,0 +1,33 @@
+<div class="modal-content" align="center" ng-if="alertType === 'inform' || alertType === 'error'" style="padding: 6px;">
+    <div class="modal-header" ng-show="alertType==='inform'" style="padding: 6px 0;">
+        <h4 style="color: green">
+            <i class="fa fa-info-circle"></i>&nbsp;<strong>提示</strong>
+        </h4>
+    </div>
+    <div class="modal-header" ng-show="alertType==='error'" style="padding: 6px 0;">
+        <h4 style="color: red">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;<strong>错误</strong>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div>
+            <p class="text-center">{{ alertInfo }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-content" align="center" ng-if="alertType === 'confirm'" style="padding: 6px;">
+    <div class="modal-header" style="padding: 6px 0;">
+        <h4 style="color: green">
+            <i class="fa fa-question-circle"></i>&nbsp; 提示
+        </h4>
+    </div>
+    <div class="modal-body">
+        <p style="margin-bottom: 20px">{{ alertInfo }}</p>
+        <div>
+            <button class="btn btn-success" ng-click="$close(true)">确定</button>
+            <span style="margin: 0 25px">&nbsp;</span>
+            <button class="btn btn-default" ng-click="$dismiss(false)">取消</button>
+        </div>
+    </div>
+</div>

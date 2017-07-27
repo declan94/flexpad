@@ -1,0 +1,24 @@
+{
+  "name": "flexpad-front",
+  "authors": [
+    "陈晔 <chenye94@qq.com>"
+  ],
+  "description": "flexpad frontend",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.5",
+    "angular-bootstrap": "2.4.0",
+    "angular-cookies": "^1.6.5",
+    "bootstrap": "^3.3.7"
+  }
+}

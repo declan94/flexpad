@@ -1,0 +1,22 @@
+<div class="login-container">
+  <form>
+  <div class="login-content">
+    <h1>- Flexpad -</h1>
+    <br/>
+    <div class="input-div">
+      <label>用户名 |</label>
+      <input id="username" name="usernameInput" ng-model="username" type="text"/>
+    </div>
+    <div class="input-div">
+      <label>密&nbsp;&nbsp;&nbsp;&nbsp;码 |</label>
+      <input id="password" name="passwordInput" ng-model="password" type="password"/>
+    </div>
+    <div class="input-div">
+      <button type="submit" class="login-btn" ng-click="login(username, password)" ng-disabled="isLoading()">
+        登&nbsp;&nbsp;&nbsp;&nbsp;陆
+      </button>
+    </div>
+
+  </div>
+  </form>
+</div>
