@@ -7,7 +7,7 @@
 
             <div class="form-group">
                 <label class="control-label">
-                    Readonly &nbsp;<input name="readonly" type="checkbox" ng-model="readonly" ng-click="updateLink()"/>
+                    Readonly &nbsp;<input name="readonly" type="checkbox" ng-model="readonly" ng-click="updateLink()" ng-disabled="!pad.id"/>
                 </label>
             </div>
 

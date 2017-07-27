@@ -28,6 +28,7 @@ angular.module('flexpad')
                 size: 'lg',
                 controller: function ($scope, $location) {
                     $scope.pad = pad;
+                    $scope.readonly = !pad.id;
                     $scope.updateLink = function () {
                         if ($scope.readonly) {
                             padID = pad.rdID;

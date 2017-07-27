@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var etherpad = require('./etherpad');
 var async = require('async');
+var debug = require('debug')('flexpad:pad');
 
 var schema = new mongoose.Schema({
     username: 'string',     // user who own's the pad
@@ -19,16 +20,27 @@ exports.getPads = function (username, callback) {
     Pad.find({username: username}, callback);
 };
 
-exports.getPad = function (pad, callback) {
-    var padID = pad.padID;
-    if (padID.match(/^g./)) {
-        Pad.findOne({id: padID}, callback);
-    } else if (padID.match(/^r./)) {
-        Pad.findOne({rdID: padID}, callback);
+exports.getPad = function (p, callback) {
+    var padID = p.padID;
+    var readonly = false;
+    var query;
+    if (padID.match(/^g\./)) {
+        query = {id: padID};
+    } else if (padID.match(/^r\./)) {
+        readonly = true;
+        query = {rdID: padID};
     } else {
         // todo add password protected
-        callback("Invalid padID: " + padID);
+        return callback("Invalid padID: " + padID);
     }
+    async.waterfall([function(cb) {
+        Pad.findOne(query, cb);
+    }, function (pad, cb) {
+        if (readonly) {
+            pad.id = null;
+        }
+        cb(null, pad);
+    }], callback);
 };
 
 exports.createPad = function (username, title, callback) {
