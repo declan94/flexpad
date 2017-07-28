@@ -25,9 +25,9 @@ rsync -a bin/deb-src/ ${SRC}/
 mkdir -p ${SYSROOT}/opt/
 
 rsync --exclude '.git' -a . ${SYSROOT}/opt/flexpad/ --delete
-find ${SRC}/ -type d -exec chmod 0755 {} \;
-find ${SRC}/ -type f -exec chmod go-w {} \;
-chown -R root:root ${SRC}/
+sudo find ${SRC}/ -type d -exec chmod 0755 {} \;
+sudo find ${SRC}/ -type f -exec chmod go-w {} \;
+sudo chown -R root:root ${SRC}/
 
 let SIZE=`du -s ${SYSROOT} | sed s'/\s\+.*//'`+8
 pushd ${SYSROOT}/
@@ -41,9 +41,9 @@ popd
 pushd ${DIST}/
 echo 2.0 > ./debian-binary
 
-find ${DIST}/ -type d -exec chmod 0755 {} \;
-find ${DIST}/ -type f -exec chmod go-w {} \;
-chown -R root:root ${DIST}/
+sudo find ${DIST}/ -type d -exec chmod 0755 {} \;
+sudo find ${DIST}/ -type f -exec chmod go-w {} \;
+sudo chown -R root:root ${DIST}/
 ar r ${DIST}/flexpad-0.0.1.deb debian-binary control.tar.gz data.tar.gz
 popd
 rsync -a ${DIST}/flexpad-0.0.1.deb ./
