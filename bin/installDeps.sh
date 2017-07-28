@@ -12,4 +12,4 @@ npm install
 npm install bower
 
 cd public
-../node_modules/bower/bin/bower install
+../node_modules/bower/bin/bower install $1
