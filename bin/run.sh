@@ -62,8 +62,7 @@ do
     fi
   fi
   
-  echo "RESTART!" >>${LOG}
-  
   #Sleep 10 seconds before restart
   sleep 10
+  echo "RESTART!" >>${LOG}
 done

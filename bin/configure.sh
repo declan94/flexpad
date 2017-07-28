@@ -5,6 +5,10 @@
 set -u
 set -e
 
+# make sure mysql and mongodb started
+/etc/init.d/mysql start
+/etc/init.d/mongodb start || /etc/init.d/mongod start
+
 #Was this script started in the bin folder? if yes move out
 if [ -d "../bin" ]; then
   cd "../"

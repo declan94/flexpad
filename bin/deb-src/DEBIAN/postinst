@@ -4,6 +4,11 @@ chown flexpad -R /opt/flexpad
 chmod +x /etc/init.d/flexpad
 systemctl daemon-reload
 
+# configure
+cd /opt/flexpad
+chmod +x ./bin/*.sh
+./bin/configure.sh
+
 # Start the services!
 service flexpad start
 echo "Give flexpad several minutes to install dependencies, then visit http://localhost:8081 in your web browser"
