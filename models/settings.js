@@ -25,6 +25,9 @@ var defaultSettings = {
     // mongodb user password
     mongoPwd: "cfflexpad",
 
+    // app listen port
+    port: 8081,
+
     // settings: reading from settings.users
     // api: using http api to auth
     authType: "settings",

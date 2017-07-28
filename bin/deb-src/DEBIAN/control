@@ -1,0 +1,9 @@
+Package: flexpad
+Version: 0.0.1
+Architecture: amd64
+Maintainer: Ye Chen <ye.chen@cloudfortdata.com>
+Installed-Size: SIZE
+Depends: nodejs, etherpad (= 1.3), mysql-server, mongodb-server
+Section: misc
+Priority: optional
+Description: Flexpad is a collaborative editor based on etherpad.

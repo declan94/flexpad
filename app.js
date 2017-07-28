@@ -70,6 +70,11 @@ var createApp = function(callback) {
         res.render('error');
     });
 
+    /**
+     * set port
+     */
+    app.set('port', settings.port || '3000');
+
     callback(null, app);
 };
 

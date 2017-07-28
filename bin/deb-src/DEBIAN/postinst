@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+chown flexpad -R /opt/flexpad
+chmod +x /etc/init.d/flexpad
+systemctl daemon-reload
+
+# Start the services!
+service flexpad start
+echo "Visit http://localhost:8081 in your web browser"
+echo "Add users in /opt/flexpad/app_settings.json"
+echo "To stop flexpad type 'service flexpad stop', To restart type 'service flexpad restart'".
+rm -f /tmp/flexpad.log /tmp/flexpad.err

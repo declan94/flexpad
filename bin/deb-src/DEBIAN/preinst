@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Create Flexpad user
+adduser --system flexpad
+
+# Make log folder
+mkdir -p /var/log/flexpad
+chown flexpad /var/log/flexpad

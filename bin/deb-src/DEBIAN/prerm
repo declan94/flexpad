@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Stop the appserver:
+service etherpad stop || true
