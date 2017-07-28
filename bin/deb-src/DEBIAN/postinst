@@ -13,10 +13,11 @@ chmod +x ./bin/*.sh
 ./bin/installDeps.sh --allow-root
 ./bin/configure.sh
 
-# Start the services!
-service flexpad start
-echo "Give flexpad several minutes to install dependencies, then visit http://localhost:8081 in your web browser"
-echo "Log file is at /var/log/flexpad/flexpad.log"
-echo "Add users in /opt/flexpad/app_settings.json"
-echo "To stop flexpad type 'service flexpad stop', To restart type 'service flexpad restart'".
 rm -f /tmp/flexpad.log /tmp/flexpad.err || true
+
+echo "------------------------ Install Finished ------------------------"
+echo "Edit /opt/flexpad/settings.json to add users."
+echo "Then start flexpad by 'service flexpad start'"
+echo "Visit http://localhost:8081 in your web browser, replace the default port 8081 by the port you specified in settings.json"
+echo "To stop flexpad type 'service flexpad stop', To restart type 'service flexpad restart'".
+
