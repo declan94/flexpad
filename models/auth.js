@@ -18,6 +18,7 @@ var settingsCheck = function(username, password, callback) {
         return callback("Wrong username!");
     }
     var user = settings.users[username];
+    user.username = username;
     if (user.password != password) {
         return callback("Wrong password!");
     }

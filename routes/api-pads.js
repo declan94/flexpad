@@ -11,10 +11,11 @@ var router = express.Router();
 
 router.get('/pads', function(req, res, next) {
     var user = req.session.user;
-    padModel.getPads(user.username, function(err, pads) {
+    accessModel.getPads(user.username, function(err, pads) {
         if (err) {
             res.send(err);
         } else {
+            debug(pads);
             res.json({ items: pads });
         }
     });

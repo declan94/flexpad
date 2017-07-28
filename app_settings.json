@@ -6,6 +6,17 @@
     // etherpad home directory
     "epHome": "/Users/declan/cloudafort/etherpad-lite-1.6.1",
 
+    // mongodb host
+    "mongoHost": "localhost",
+    // mongodb port
+    "mongoPort": 27017,
+    // mongdb db
+    "mongoDB": "flexpad",
+    // mongodb user
+    "mongoUser": "flexpad",
+    // mongodb user password
+    "mongoPwd": "cfflexpad",
+
     // use http api for authentication
     // "authType": "api",
     // "apiPath": "localhost:8080/api/v1/login",

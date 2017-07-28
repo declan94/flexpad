@@ -20,6 +20,8 @@ var schema = new mongoose.Schema({
 
 var Pad = mongoose.model('Pad', schema);
 
+exports.Dao = Pad;
+
 exports.getPads = function(username, callback) {
     Pad.find({ username: username }, callback);
 };

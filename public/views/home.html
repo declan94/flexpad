@@ -1,4 +1,3 @@
-
 <div class="home-container">
 
     <div class="row">
@@ -6,7 +5,7 @@
             <form name="createForm">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Title" ng-model="createTitle" required>
-                <span class="input-group-btn">
+                    <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="createPad(createTitle)"
                             ng-disabled="isLoading() || createForm.$invalid">Create Pad</button>
                 </span>
@@ -19,8 +18,8 @@
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="pad in pads" ng-click="gotoPad(pad)">
-                    {{pad.title}}
+                <li class="list-group-item" ng-repeat="pad in pads" ng-click="gotoPad(pad._pad)">
+                    <span class="badge">{{pad._pad.username}}</span> {{pad._pad.title}}
                 </li>
             </ul>
         </div>

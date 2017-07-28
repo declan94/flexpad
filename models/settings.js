@@ -13,6 +13,18 @@ var defaultSettings = {
     epPort: 9001,
     // etherpad home directory
     epHome: null,
+
+    // mongodb host
+    mongoHost: "localhost",
+    // mongodb port
+    mongoPort: 27017,
+    // mongdb db
+    mongoDB: "flexpad",
+    // mongodb user
+    mongoUser: "flexpad",
+    // mongodb user password
+    mongoPwd: "cfflexpad",
+
     // settings: reading from settings.users
     // api: using http api to auth
     authType: "settings",
