@@ -6,6 +6,7 @@
 
 var async = require('async');
 var app = require('../app');
+var settings = require('../models/settings')
 var debug = require('debug')('flexpad:server');
 var http = require('http');
 
@@ -16,6 +17,12 @@ async.waterfall(app.initialFuncs, function(err, expressApp) {
         console.error(err);
         return;
     }
+
+    /**
+     * Get port from settings and store in Express.
+     */
+    var port = normalizePort(settings.port || '3000');
+    expressApp.set('port', port);
 
     /**
      * Create HTTP server.
