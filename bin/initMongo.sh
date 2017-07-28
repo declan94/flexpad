@@ -4,5 +4,7 @@ MONGODB=flexpad
 MONGOUSER=flexpad
 MONGOPWD=cfflexpad
 
-mongoQuery="db.creatUser({user: '$MONGOUSER', pwd: '$MONGOPWD', roles: [{role: 'readwrite', db: '$MONGODB'}]"
-mongo <<< "$mongoQuery"
+set -u
+set -e
+
+echo "db.createUser({user: '$MONGOUSER', pwd: '$MONGOPWD', roles: ['readWrite']});" | mongo $MONGODB
