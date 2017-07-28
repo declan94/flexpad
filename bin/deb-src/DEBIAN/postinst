@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -u
+set -e
+
 chown flexpad -R /opt/flexpad
 chmod +x /etc/init.d/flexpad
 systemctl daemon-reload
@@ -16,4 +19,4 @@ echo "Give flexpad several minutes to install dependencies, then visit http://lo
 echo "Log file is at /var/log/flexpad/flexpad.log"
 echo "Add users in /opt/flexpad/app_settings.json"
 echo "To stop flexpad type 'service flexpad stop', To restart type 'service flexpad restart'".
-rm -f /tmp/flexpad.log /tmp/flexpad.err
+rm -f /tmp/flexpad.log /tmp/flexpad.err || true
