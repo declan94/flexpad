@@ -43,6 +43,6 @@ sudo echo 2.0 > ./debian-binary
 sudo find ${DIST}/ -type d -exec chmod 0755 {} \;
 sudo find ${DIST}/ -type f -exec chmod go-w {} \;
 sudo chown -R root:root ${DIST}/
-sudo ar r ${DIST}/flexpad-0.0.1.deb debian-binary control.tar.gz data.tar.gz
+sudo ar r ${DIST}/flexpad-0.0.2.deb debian-binary control.tar.gz data.tar.gz
 popd
-rsync -a ${DIST}/flexpad-0.0.1.deb ../
+rsync -a ${DIST}/flexpad-0.0.2.deb ../
