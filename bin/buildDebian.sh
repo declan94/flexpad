@@ -10,17 +10,15 @@ if [ -d "../bin" ]; then
   cd "../"
 fi
 
-./bin/installDeps.sh
-
 SRC=/tmp/flexpad-deb-src
 DIST=/tmp/flexpad-deb-dist
 SYSROOT=${SRC}/sysroot
 DEBIAN=${SRC}/DEBIAN
 
-rm -rf ${DIST}
+sudo rm -rf ${DIST}
 mkdir -p ${DIST}/
 
-rm -rf ${SRC}
+sudo rm -rf ${SRC}
 rsync -a bin/deb-src/ ${SRC}/
 mkdir -p ${SYSROOT}/opt/
 
@@ -29,21 +27,21 @@ sudo find ${SRC}/ -type d -exec chmod 0755 {} \;
 sudo find ${SRC}/ -type f -exec chmod go-w {} \;
 sudo chown -R root:root ${SRC}/
 
-let SIZE=`du -s ${SYSROOT} | sed s'/\s\+.*//'`+8
+let SIZE=`sudo du -s ${SYSROOT} | sudo sed s'/\s\+.*//'`+8
 pushd ${SYSROOT}/
-tar czf ${DIST}/data.tar.gz [a-z]*
+sudo tar czf ${DIST}/data.tar.gz [a-z]*
 popd
-sed s"/SIZE/${SIZE}/" -i ${DEBIAN}/control
+sudo sed s"/SIZE/${SIZE}/" -i ${DEBIAN}/control
 pushd ${DEBIAN}
-tar czf ${DIST}/control.tar.gz *
+sudo tar czf ${DIST}/control.tar.gz *
 popd
 
 pushd ${DIST}/
-echo 2.0 > ./debian-binary
+sudo echo 2.0 > ./debian-binary
 
 sudo find ${DIST}/ -type d -exec chmod 0755 {} \;
 sudo find ${DIST}/ -type f -exec chmod go-w {} \;
 sudo chown -R root:root ${DIST}/
-ar r ${DIST}/flexpad-0.0.1.deb debian-binary control.tar.gz data.tar.gz
+sudo ar r ${DIST}/flexpad-0.0.1.deb debian-binary control.tar.gz data.tar.gz
 popd
-rsync -a ${DIST}/flexpad-0.0.1.deb ./
+rsync -a ${DIST}/flexpad-0.0.1.deb ../

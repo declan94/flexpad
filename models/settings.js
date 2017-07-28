@@ -4,7 +4,7 @@ var path = require('path');
 var jsonminify = require('jsonminify');
 var async = require('async');
 
-var settingfile = path.normalize(path.join(__dirname, '../app_settings.json'));
+var settingfile = path.normalize(path.join(__dirname, '../settings.json'));
 
 var defaultSettings = {
     // etherpad host
@@ -28,30 +28,21 @@ var defaultSettings = {
     // app listen port
     port: 8081,
 
-    // settings: reading from settings.users
-    // api: using http api to auth
-    authType: "settings",
+    // authTypes [fake/settings/api]
+    authType: "fake",
     users: {}
 };
 
 try {
     var settingsStr = fs.readFileSync(settingfile).toString();
-} catch (e) {
-    console.error('Read settings file failed: ' + JSON.stringify(e));
-    process.exit()
-}
-
-try {
     settingsStr = jsonminify(settingsStr).replace(",]", "]").replace(",}", "}");
     var settings = JSON.parse(settingsStr);
+    async.eachOf(settings, function(v, k, callback) {
+        defaultSettings[k] = v;
+        callback();
+    });
 } catch (e) {
-    console.error('Parse setting file failed');
-    process.exit()
+    console.warn('Read settings file failed: ' + JSON.stringify(e) + '. Using default settings.');
 }
-
-async.eachOf(settings, function(v, k, callback) {
-    defaultSettings[k] = v;
-    callback();
-});
 
 module.exports = defaultSettings;

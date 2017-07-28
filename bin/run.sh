@@ -46,6 +46,7 @@ do
     exit 1
   fi
 
+  ./bin/installDeps.sh
   #start the application
   node ./bin/www $@ >>${LOG} 2>>${LOG}
   
