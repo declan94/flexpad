@@ -10,7 +10,14 @@ var accessModel = require('../models/padaccess');
 var idHandler = require('../models/padid');
 var settings = require('../models/settings');
 
-var epPrefix = "http://" + settings.epHost + ":" + settings.epPort + "/p/";
+
+var epPrefix = function(req) {
+    var host = settings.epHost;
+    if (host == "localhost" || host == "127.0.0.1") {
+        host = req.host;
+    }
+    return "http://" + host + ":" + settings.epPort + "/p/";
+};
 
 router.get('/pads', function(req, res, next) {
     var user = req.session.user;
@@ -24,7 +31,10 @@ router.get('/pads', function(req, res, next) {
                 }
                 callback(null, accessPad);
             }, function(err, results) {
-                res.json({ items: results, epPrefix: epPrefix });
+                res.json({
+                    items: results,
+                    epPrefix: epPrefix(req)
+                });
             });
         }
     });
@@ -51,7 +61,7 @@ router.get('/pads/:wrappedID', function(req, res, next) {
                     if (err) {
                         return res.status(500).json({ msg: "Unknown Error" });
                     }
-                    return res.json({ item: pad, epPrefix: epPrefix });
+                    return res.json({ item: pad, epPrefix: epPrefix(req) });
                 });
             });
         }
