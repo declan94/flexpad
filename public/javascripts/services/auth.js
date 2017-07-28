@@ -1,16 +1,14 @@
-
 angular.module('flexpad')
-    .factory('Auth', function (Base64, Relocate, $cookieStore, $http, $resource) {
+    .factory('Auth', function(Base64, Relocate, $cookieStore, $http, $resource) {
 
-        var service = $resource("/api/login", {},
-            {
-                _login: {method: 'POST', cache: false}
-            });
+        var service = $resource("/api/login", {}, {
+            _login: { method: 'POST', cache: false }
+        });
 
         service.currentUser = {};
         service._loggedIn = false;
 
-        var setCredentials = function (username, password) {
+        var setCredentials = function(username, password) {
             var authToken = username + ':' + password;
             var authdata = Base64.encode(authToken);
             service.currentUser = {};
@@ -20,14 +18,14 @@ angular.module('flexpad')
             service._loggedIn = false;
         };
 
-        var clearCredentials = function () {
+        var clearCredentials = function() {
             service.currentUser = {};
             $cookieStore.remove('CurrentUser');
             $http.defaults.headers.common.Authorization = 'Basic ';
             service._loggedIn = false;
         };
 
-        service.getHeader = function () {
+        service.getHeader = function() {
             if (service.currentUser && service.currentUser.authdata) {
                 return "Basic " + service.currentUser.authdata;
             } else {
@@ -43,7 +41,7 @@ angular.module('flexpad')
             }
         };
 
-        service.getUserId = function () {
+        service.getUserId = function() {
             if (service.currentUser && service.currentUser.userdata) {
                 return service.currentUser.userdata.id;
             } else {
@@ -51,7 +49,7 @@ angular.module('flexpad')
             }
         };
 
-        service.getUserdata = function () {
+        service.getUserdata = function() {
             if (service.currentUser && service.currentUser.userdata) {
                 return service.currentUser.userdata;
             } else {
@@ -80,11 +78,12 @@ angular.module('flexpad')
 
         service.logout = function() {
             clearCredentials();
+            Relocate.toLogin();
         };
 
-        service.login = function (username, password, callback) {
+        service.login = function(username, password, callback) {
             setCredentials(username, password);
-            service._login({username: username, password: password}, function(user) {
+            service._login({ username: username, password: password }, function(user) {
                 console.log(user);
                 service._loggedIn = true;
                 service.currentUser.userdata = user;

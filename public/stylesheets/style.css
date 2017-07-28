@@ -1,187 +1,203 @@
 body {
-  padding: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .loader-loop {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: spin 2s linear infinite;
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .modal-dialog-center {
-  position: relative;
-  width: auto;
-  margin: 0 10px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    position: relative;
+    width: auto;
+    margin: 0 10px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .modal.fade .modal-dialog-center {
-  transform: translate(0, -100%);
+    transform: translate(0, -100%);
 }
 
 .modal.in .modal-dialog-center {
-  transform: translate(0, 0);
+    transform: translate(0, 0);
 }
 
 .modal-content-loading {
-  position: relative;
-  outline: 0;
+    position: relative;
+    outline: 0;
 }
 
 table.table th {
-  text-align: center
+    text-align: center
 }
 
 table.table td {
-  text-align: center
+    text-align: center
 }
+
 
 /*login*/
-.login-container, .maintaining-container {
-  background: url("../images/bg.jpg") bottom;
-  background-size: cover;
-  padding: 0;
-  height: 100vh;
+
+.login-container,
+.maintaining-container {
+    background: url("../images/bg.jpg") bottom;
+    background-size: cover;
+    padding: 0;
+    height: 100vh;
 }
 
-.login-content, .maintaining-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 400px;
+.login-content,
+.maintaining-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
 }
 
 .login-content .input-div {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
-.login-content h1, .maintaining-container h1 {
-  font-size: 30px;
-  color: #FFFFFF;
-  line-height: 34px;
-  text-align: center;
-  font-weight: 200;
-  margin: 260px auto 0 auto;
+.login-content h1,
+.maintaining-container h1 {
+    font-size: 30px;
+    color: #FFFFFF;
+    line-height: 34px;
+    text-align: center;
+    font-weight: 200;
+    margin: 260px auto 0 auto;
 }
 
-.login-content h2, .maintaining-container h2 {
-  font-size: 20px;
-  color: #FFFFFF;
-  line-height: 34px;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 40px;
+.login-content h2,
+.maintaining-container h2 {
+    font-size: 20px;
+    color: #FFFFFF;
+    line-height: 34px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 .maintaining-container h1 {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .maintaining-container h2 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .login-content input,
 .login-content input:-webkit-autofill {
-  opacity: 0.6;
-  border: 1px solid #FFFFFF;
-  color: #FFFFFF;
-  border-radius: 4px;
-  font-size: 16px;
-  height: 40px;
-  width: 300px;
-  background: #314691;
-  padding-left: 86px;
+    opacity: 0.6;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 40px;
+    width: 300px;
+    background: #314691;
+    padding-left: 86px;
 }
 
-
 .login-content label {
-  opacity: 1.0;
-  font-size: 16px;
-  color: #FFFFFF;
-  font-weight: 100;
-  margin-right: -80px;
-  width: 76px;
-  text-align: right;
+    opacity: 1.0;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-weight: 100;
+    margin-right: -80px;
+    width: 76px;
+    text-align: right;
 }
 
 .login-content button {
-  border: 1px solid #7FBAFF;
-  border-radius: 4px;
-  background: #314691;
-  width: 300px;
-  height: 40px;
-  opacity: 0.6;
-  font-size: 16px;
-  color: #FFFFFF;
+    border: 1px solid #7FBAFF;
+    border-radius: 4px;
+    background: #314691;
+    width: 300px;
+    height: 40px;
+    opacity: 0.6;
+    font-size: 16px;
+    color: #FFFFFF;
 }
 
 .login-content .link-div {
-  width: 300px;
-  text-align: right;
+    width: 300px;
+    text-align: right;
 }
 
 .login-content a {
-  opacity: 0.8;
-  font-weight: 100;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+    opacity: 0.8;
+    font-weight: 100;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
+
 /*Admin main*/
+
 a.panel {
-  display: block;
+    display: block;
 }
 
 .block {
-  width: auto;
-  height: 200px;
-  padding-top: 50px;
+    width: auto;
+    height: 200px;
+    padding-top: 50px;
 }
 
 .block p {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .block .title {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .block .data {
-  font-size: 2.5em;
+    font-size: 2.5em;
 }
 
+
 /*home*/
+
 .home-container {
-  padding: 50px;
+    padding: 30px;
 }
+
 
 /*footer*/
 
 .footer {
-  text-align: center;
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
 }
 
-body > div.content-wrapper {
-  min-height: 100%;
-  margin-bottom: -80px;
+body>div.content-wrapper {
+    min-height: 100%;
+    margin-bottom: -80px;
 }

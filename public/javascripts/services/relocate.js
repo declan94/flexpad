@@ -25,7 +25,11 @@ angular.module('flexpad')
         };
 
         service.toPad = function(pad) {
-            toLocation("/pad/" + pad.id);
+            if (pad.id) {
+                toLocation("/pad/" + pad.id);
+            } else {
+                toLocation("/pad/" + pad.rdID);
+            }
         };
 
         service.toBack = function(defaultPath) {

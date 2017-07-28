@@ -2,12 +2,15 @@
  * Created by declan on 17/7/26.
  */
 var express = require('express');
+var router = express.Router();
+var async = require('async');
+var debug = require('debug')('flexpad:api-pads');
 var padModel = require('../models/pad');
 var accessModel = require('../models/padaccess');
 var idHandler = require('../models/padid');
-var debug = require('debug')('flexpad:api-pads');
-var router = express.Router();
+var settings = require('../models/settings');
 
+var epPrefix = "http://" + settings.epHost + ":" + settings.epPort + "/p/";
 
 router.get('/pads', function(req, res, next) {
     var user = req.session.user;
@@ -15,8 +18,14 @@ router.get('/pads', function(req, res, next) {
         if (err) {
             res.send(err);
         } else {
-            debug(pads);
-            res.json({ items: pads });
+            async.map(pads, function(accessPad, callback) {
+                if (accessPad.readonly) {
+                    accessPad._pad.id = null;
+                }
+                callback(null, accessPad);
+            }, function(err, results) {
+                res.json({ items: results, epPrefix: epPrefix });
+            });
         }
     });
 });
@@ -42,7 +51,7 @@ router.get('/pads/:wrappedID', function(req, res, next) {
                     if (err) {
                         return res.status(500).json({ msg: "Unknown Error" });
                     }
-                    return res.json({ item: pad });
+                    return res.json({ item: pad, epPrefix: epPrefix });
                 });
             });
         }

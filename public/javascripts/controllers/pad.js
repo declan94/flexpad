@@ -1,16 +1,18 @@
 angular.module('flexpad')
-    .controller('PadCtrl', function($scope, $routeParams, $sce, $uibModal, Load, Alert, Pads) {
+    .controller('PadCtrl', function($scope, $routeParams, $sce, $uibModal, Load, Alert, Pads, Auth) {
 
         Load.clear();
+        $scope.username = Auth.getUsername;
+        $scope.logout = Auth.logout;
         $scope.isLoading = Load.isLoading;
 
         var padID = $routeParams.padID;
         $scope.padID = padID;
         Load.loading("pad");
         Pads.get({ padID: padID }, function(ret) {
+            var prefix = ret.epPrefix;
             $scope.pad = ret.item;
-            $scope.frameUrl = $sce.trustAsResourceUrl("http://localhost:9001/p/" +
-                padID + "?showControls=true&showChat=true&showLineNumbers=true&useMonospaceFont=false");
+            $scope.frameUrl = $sce.trustAsResourceUrl(prefix + padID + "?showControls=true&showChat=true&showLineNumbers=true&useMonospaceFont=false");
             Load.loaded("pad");
         }, function(err) {
             console.debug(err);

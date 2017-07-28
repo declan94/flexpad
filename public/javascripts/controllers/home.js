@@ -1,10 +1,12 @@
 angular.module('flexpad')
-    .controller('HomeCtrl', function ($scope, Pads, Load, Alert, Relocate) {
+    .controller('HomeCtrl', function($scope, Pads, Load, Alert, Relocate, Auth) {
 
+        $scope.username = Auth.getUsername;
+        $scope.logout = Auth.logout;
         $scope.isLoading = Load.isLoading;
         Load.clear();
         Load.loading("pads");
-        Pads.get({}, function (ret) {
+        Pads.get({}, function(ret) {
             $scope.pads = ret.items;
             Load.loaded("pads");
         }, function(err) {
@@ -18,10 +20,10 @@ angular.module('flexpad')
                 return;
             }
             Load.loading("createPad");
-            Pads.create({}, {title: title}, function (ret) {
+            Pads.create({}, { title: title }, function(ret) {
                 Load.loaded("createPad");
                 Relocate.toPad(ret.item);
-            }, function (err) {
+            }, function(err) {
                 console.debug(err);
                 Alert.error("Create Failed!");
                 Load.loaded("createPad");

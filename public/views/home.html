@@ -1,5 +1,26 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Flexpad</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown btn-group" uib-dropdown dropdown-append-to-body>
+                    <a class="dropdown-toggle" uib-dropdown-toggle>
+                            {{username()}}<span class="caret"></span>
+                        </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                        <li role="menuitem"><a href="javascript:;" ng-click="logout()">Logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                        <!-- <li class="divider"></li> -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="home-container">
-
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
             <form name="createForm">
@@ -13,7 +34,6 @@
             </form>
         </div>
     </div>
-
     <br/>
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
