@@ -12,7 +12,7 @@ var defaultSettings = {
     // etherpad port
     epPort: 9001,
     // etherpad home directory
-    epHome: null,
+    epHome: "/opt/etherpad",
 
     // mongodb host
     mongoHost: "localhost",

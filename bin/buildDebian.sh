@@ -23,6 +23,7 @@ rsync -a bin/deb-src/ ${SRC}/
 mkdir -p ${SYSROOT}/opt/
 
 rsync --exclude '.git' -a . ${SYSROOT}/opt/flexpad/ --delete
+cp ${SYSROOT}/opt/flexpad/settings.template.json ${SYSROOT}/opt/flexpad/settings.json
 sudo find ${SRC}/ -type d -exec chmod 0755 {} \;
 sudo find ${SRC}/ -type f -exec chmod go-w {} \;
 sudo chown -R root:root ${SRC}/
