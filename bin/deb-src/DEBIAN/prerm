@@ -2,3 +2,6 @@
 
 # Stop the appserver:
 service etherpad stop || true
+
+rm -rf /opt/flexpad/node_modules || true
+rm -rf /opt/flexpad/public/bower_components || true
