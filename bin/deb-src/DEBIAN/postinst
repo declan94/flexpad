@@ -7,6 +7,7 @@ systemctl daemon-reload
 # configure
 cd /opt/flexpad
 chmod +x ./bin/*.sh
+./bin/installDeps.sh
 ./bin/configure.sh
 
 # Start the services!

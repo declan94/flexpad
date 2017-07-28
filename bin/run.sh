@@ -45,8 +45,7 @@ do
     echo "Logfile '${LOG}' is not writeable"
     exit 1
   fi
-
-  ./bin/installDeps.sh $@ >>${LOG} 2>>${LOG}
+  
   #start the application
   node ./bin/www $@ >>${LOG} 2>>${LOG}
   
