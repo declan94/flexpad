@@ -13,6 +13,7 @@ chown flexpad -R /opt/flexpad
 chmod +x /etc/init.d/flexpad
 systemctl daemon-reload
 
+service flexpad start
 rm -f /tmp/flexpad.log /tmp/flexpad.err || true
 
 echo "------------------------ Install Finished ------------------------"
