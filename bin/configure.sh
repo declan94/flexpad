@@ -23,7 +23,7 @@ sudo cp ./etherpad/settings.json /opt/etherpad/
 sudo chown etherpad /opt/etherpad/settings.json
 
 echo "Restart etherpad"
-sudo service etherpad Restart
+sudo service etherpad restart
 
 echo "[Configure flexpad]"
 echo "Configure mongodb for flexpad"
