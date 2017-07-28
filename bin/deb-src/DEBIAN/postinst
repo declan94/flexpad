@@ -3,21 +3,20 @@
 set -u
 set -e
 
-chown flexpad -R /opt/flexpad
-chmod +x /etc/init.d/flexpad
-systemctl daemon-reload
-
 # configure
 cd /opt/flexpad
 chmod +x ./bin/*.sh
 ./bin/installDeps.sh --allow-root
 ./bin/configure.sh
 
+chown flexpad -R /opt/flexpad
+chmod +x /etc/init.d/flexpad
+systemctl daemon-reload
+
 rm -f /tmp/flexpad.log /tmp/flexpad.err || true
 
 echo "------------------------ Install Finished ------------------------"
+echo "Visit http://localhost:8081 in your web browser"
 echo "Edit /opt/flexpad/settings.json to add users."
-echo "Then start flexpad by 'service flexpad start'"
-echo "Visit http://localhost:8081 in your web browser, replace the default port 8081 by the port you specified in settings.json"
-echo "To stop flexpad type 'service flexpad stop', To restart type 'service flexpad restart'".
+echo "To stop flexpad type 'service flexpad stop', To restart type 'service flexpad restart'"
 
