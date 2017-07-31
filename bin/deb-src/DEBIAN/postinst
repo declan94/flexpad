@@ -6,7 +6,7 @@ set -e
 # configure
 cd /opt/flexpad
 chmod +x ./bin/*.sh
-./bin/installDeps.sh --allow-root
+# ./bin/installDeps.sh --allow-root
 ./bin/configure.sh
 
 chown flexpad -R /opt/flexpad

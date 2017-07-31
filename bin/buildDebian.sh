@@ -10,6 +10,10 @@ if [ -d "../bin" ]; then
   cd "../"
 fi
 
+if [ $1 != "-s" ]; then 
+  ./bin/installDeps.sh
+fi
+
 SRC=/tmp/flexpad-deb-src
 DIST=/tmp/flexpad-deb-dist
 SYSROOT=${SRC}/sysroot
