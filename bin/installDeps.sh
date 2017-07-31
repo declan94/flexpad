@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -u
 set -e
 
 #Was this script started in the bin folder? if yes move out
