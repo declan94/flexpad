@@ -2,7 +2,6 @@
 
 # IMPORTANT 
 # Protect agaisnt mispelling a var and rm -rf /
-set -u
 set -e
 
 #Was this script started in the bin folder? if yes move out
@@ -10,7 +9,7 @@ if [ -d "../bin" ]; then
   cd "../"
 fi
 
-if [ $1 != "-s" ]; then 
+if [ "$1" != "-s" ]; then 
   ./bin/installDeps.sh
 fi
 
