@@ -13,6 +13,8 @@ if [ "$1" != "-s" ]; then
   ./bin/installDeps.sh
 fi
 
+VERSION=`awk -F " " '/Version:/{print $2}' ./bin/deb-src/DEBIAN/control`
+NAME=flexpad-${VERSION}.deb
 SRC=/tmp/flexpad-deb-src
 DIST=/tmp/flexpad-deb-dist
 SYSROOT=${SRC}/sysroot
@@ -46,6 +48,6 @@ sudo echo 2.0 > ./debian-binary
 sudo find ${DIST}/ -type d -exec chmod 0755 {} \;
 sudo find ${DIST}/ -type f -exec chmod go-w {} \;
 sudo chown -R root:root ${DIST}/
-sudo ar r ${DIST}/flexpad-0.0.2.deb debian-binary control.tar.gz data.tar.gz
+sudo ar r ${DIST}/${NAME} debian-binary control.tar.gz data.tar.gz
 popd
-rsync -a ${DIST}/flexpad-0.0.2.deb ../
+rsync -a ${DIST}/${NAME} ../
