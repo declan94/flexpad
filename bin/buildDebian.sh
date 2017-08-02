@@ -13,7 +13,7 @@ if [ "$1" != "-s" ]; then
   ./bin/installDeps.sh
 fi
 
-VERSION=`awk -F " " '/Version:/{print $2}' ./bin/deb-src/DEBIAN/control`
+VERSION=`awk '$1=="Version:"{print $2}' ./bin/deb-src/DEBIAN/control`
 NAME=flexpad-${VERSION}.deb
 SRC=/tmp/flexpad-deb-src
 DIST=/tmp/flexpad-deb-dist
